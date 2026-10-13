@@ -42,7 +42,7 @@ class CheckInViewModel : ViewModel() {
 
                 CheckInResult.NOT_FOUND -> {
                     selectedPerson = null
-                    statusMessage = "❌ No aprovado, DNI: $id"
+                    statusMessage = "❌ No aprovado, ID: $id"
                 }
             }
         }

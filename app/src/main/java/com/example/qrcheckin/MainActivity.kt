@@ -88,6 +88,9 @@ fun QRCheckInScreen(
     }
 
     val scope = rememberCoroutineScope()
+    LaunchedEffect(Unit) {
+        people = PersonRepository.getPeople()
+    }
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument()
@@ -165,7 +168,7 @@ fun QRCheckInScreen(
         OutlinedTextField(
             value = enteredId,
             onValueChange = { enteredId = it },
-            label = { Text("DNI") },
+            label = { Text("ID") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -185,7 +188,7 @@ fun QRCheckInScreen(
         viewModel.selectedPerson?.let { person ->
 
             Text("Nombre: ${person.name}")
-            Text("DNI: ${person.id}")
+            Text("ID: ${person.id}")
             Text("Cena: ${if (person.dinner) "Si" else "No"}")
             Text(
                 "Tipo: ${
