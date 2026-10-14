@@ -88,7 +88,7 @@ fun QRCheckInScreen(
     }
 
     val scope = rememberCoroutineScope()
-    LaunchedEffect(Unit) {
+    LaunchedEffect(viewModel.selectedPerson) {
         people = PersonRepository.getPeople()
     }
 
@@ -189,33 +189,35 @@ fun QRCheckInScreen(
 
             Text("Nombre: ${person.name}")
             Text("ID: ${person.id}")
-            Text("Cena: ${if (person.dinner) "Si" else "No"}")
             Text(
                 "Tipo: ${
-                    person.type.name.lowercase()
-                        .replaceFirstChar { it.uppercase() }
+                    when (person.type) {
+                        PersonType.INDIVIDUAL -> "Individual"
+                        PersonType.FAMILY -> "Familia"
+                        PersonType.GROUP -> "Grupo"
+                    }
                 }"
             )
             if(person.type != PersonType.INDIVIDUAL) {
                 Text("Miembros: ${person.members}")
             }
+            Text("Cena: ${if (person.dinner == 0) "No" else person.dinner}")
+            Text("Camisetas: ${if (person.shirt == 0) "No" else person.shirt}")
         }
 
         HorizontalDivider()
 
         LazyColumn(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
         ) {
-
             items(people) { person ->
-
                 Text(
-                    text = "${person.id} - ${person.name}",
+                    text = " ${person.id} - ${person.name} ${if (person.scanned) "- ✅" else ""}",
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
-
             }
-
         }
 
     }

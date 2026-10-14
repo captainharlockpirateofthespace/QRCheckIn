@@ -13,10 +13,10 @@ object DatabaseProvider {
         return database ?: synchronized(this) {
 
             database ?: Room.databaseBuilder(
-                context.applicationContext,
-                AppDatabase::class.java,
-                "qr_checkin_database"
-            ).build().also {
+                        context.applicationContext,
+                        AppDatabase::class.java,
+                        "qr_checkin_database"
+                    ).fallbackToDestructiveMigration(false).build().also {
                 database = it
             }
         }

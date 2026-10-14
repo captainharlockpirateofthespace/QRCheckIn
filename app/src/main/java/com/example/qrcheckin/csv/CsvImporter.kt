@@ -22,11 +22,11 @@ class CsvImporter {
 
                 val parts = line.split(",")
 
-                if (parts.size != 5) return@forEachLine
+                //if (parts.size != 5) return@forEachLine
 
                 try {
 
-                    val type = when (parts[3].trim().uppercase()) {
+                    val type = when (parts[2].trim().uppercase()) {
                         "INDIVIDUAL" -> PersonType.INDIVIDUAL
                         "FAMILY" -> PersonType.FAMILY
                         "GROUP" -> PersonType.GROUP
@@ -38,9 +38,10 @@ class CsvImporter {
                             id = parts[0].trim(),
                             name = parts[1].trim(),
                             scanned = false,
-                            dinner = parts[2].trim().toBooleanStrict(),
                             type = type,
-                            members = parts[4].trim().toInt()
+                            members = parts[3].trim().toInt(),
+                            dinner = parts[4].trim().toInt(),
+                            shirt = parts[5].trim().toInt()
                         )
                     )
 

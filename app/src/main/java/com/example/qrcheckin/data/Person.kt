@@ -9,7 +9,8 @@ data class Person(
     val id: String,
     val name: String,
     val scanned: Boolean = false,
-    val dinner: Boolean,
+    val dinner: Int,
     val type: PersonType,
-    val members: Int
+    val members: Int,
+    val shirt: Int
 )

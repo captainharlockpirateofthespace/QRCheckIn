@@ -30,7 +30,7 @@ class CheckInViewModel : ViewModel() {
                     selectedPerson =
                         PersonRepository.refresh(cleanId)
 
-                    statusMessage = "✅ Aprovado."
+                    statusMessage = "✅ Aprobado."
                 }
 
                 CheckInResult.ALREADY_SCANNED -> {
@@ -42,7 +42,7 @@ class CheckInViewModel : ViewModel() {
 
                 CheckInResult.NOT_FOUND -> {
                     selectedPerson = null
-                    statusMessage = "❌ No aprovado, ID: $id"
+                    statusMessage = "❌ No aprobado, ID: $id"
                 }
             }
         }

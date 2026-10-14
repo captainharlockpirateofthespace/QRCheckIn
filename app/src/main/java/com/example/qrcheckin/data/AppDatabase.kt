@@ -6,11 +6,10 @@ import androidx.room.TypeConverters
 
 @Database(
     entities = [Person::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun personDao(): PersonDao
 }
